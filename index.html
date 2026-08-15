@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Packetcraft Academy — practical, instructor-led training for CCNA and modern network engineering careers."
+    />
+    <meta name="theme-color" content="#07172f" />
+    <title>Packetcraft Academy — Learn the Network. Run the Network.</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="Packetcraft Academy, home">
+        <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
+          <path d="M7 10.5 18 4l11 6.5v15L18 32 7 25.5v-15Z" />
+          <circle cx="12" cy="13" r="2" />
+          <circle cx="24" cy="13" r="2" />
+          <circle cx="18" cy="23" r="2" />
+          <path d="m13.7 14 3.1 7m5.5-7-3.1 7M14 13h8" />
+        </svg>
+        <span>PACKETCRAFT<small>ACADEMY</small></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open navigation</span>
+        <span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#tracks">Tracks</a>
+        <a href="#method">Method</a>
+        <a href="#results">Outcomes</a>
+        <a class="nav-cta" href="#apply">Start training <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Live labs <span></span> Small cohorts <span></span> Exam ready</p>
+          <h1 id="hero-title" class="reveal reveal-delay-1">Learn the network.<br /><em>Run the network.</em></h1>
+          <p class="hero-lede reveal reveal-delay-2">
+            Instructor-led certification training built around the work network engineers actually do.
+            Configure, break, troubleshoot, repeat.
+          </p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a class="button button-primary" href="#tracks">Explore tracks <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#method">See how we teach <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-proof reveal reveal-delay-4" aria-label="Program highlights">
+            <div><strong>3×</strong><span>guided labs each week</span></div>
+            <div><strong>70%</strong><span>hands-on lab time</span></div>
+            <div><strong>12</strong><span>learners per cohort</span></div>
+          </div>
+        </div>
+
+        <div class="topology-wrap reveal reveal-delay-2" aria-label="Animated three-tier network topology illustration">
+          <div class="topology-label"><span>LAB // CAMPUS_3-TIER</span><span class="live-dot">LIVE</span></div>
+          <svg class="topology" viewBox="0 0 680 590" role="img" aria-labelledby="topology-title topology-desc">
+            <title id="topology-title">Three-tier campus network topology</title>
+            <desc id="topology-desc">Two core switches connect to two distribution switches, which connect redundantly to four access switches.</desc>
+            <defs>
+              <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M24 0H0v24" fill="none" stroke="currentColor" stroke-opacity=".15" />
+              </pattern>
+              <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            <rect class="topology-grid" width="680" height="590" fill="url(#grid)" />
+
+            <g class="tier-guides" aria-hidden="true">
+              <path d="M34 181H646M34 350H646" />
+              <text x="34" y="46">CORE LAYER</text>
+              <text x="34" y="214">DISTRIBUTION LAYER</text>
+              <text x="34" y="383">ACCESS LAYER</text>
+            </g>
+
+            <g class="links">
+              <path class="peer-link" d="M270 119H410M235 288H445" />
+              <path d="M270 119 235 288M270 119 445 288M410 119 235 288M410 119 445 288" />
+              <path d="M235 288 130 470M235 288 270 470M235 288 410 470M235 288 550 470" />
+              <path class="redundant-link" d="M445 288 130 470M445 288 270 470M445 288 410 470M445 288 550 470" />
+            </g>
+            <g class="packets" aria-hidden="true">
+              <circle r="4"><animateMotion dur="3s" repeatCount="indefinite" path="M270 119 235 288 130 470" /></circle>
+              <circle r="4"><animateMotion begin=".8s" dur="3.4s" repeatCount="indefinite" path="M410 119 445 288 550 470" /></circle>
+              <circle r="4"><animateMotion begin="1.6s" dur="3.2s" repeatCount="indefinite" path="M270 119 445 288 270 470" /></circle>
+            </g>
+
+            <g class="node node-core" transform="translate(270 119)">
+              <circle class="node-halo" r="48" />
+              <rect x="-43" y="-29" width="86" height="58" rx="8" />
+              <path d="M-23-7h46M-23 7h46" />
+              <circle cx="26" cy="18" r="3" />
+              <text x="0" y="50">CORE-SW1</text>
+            </g>
+            <g class="node node-core" transform="translate(410 119)">
+              <circle class="node-halo" r="48" />
+              <rect x="-43" y="-29" width="86" height="58" rx="8" />
+              <path d="M-23-7h46M-23 7h46" />
+              <circle cx="26" cy="18" r="3" />
+              <text x="0" y="50">CORE-SW2</text>
+            </g>
+            <g class="node" transform="translate(235 288)">
+              <rect x="-42" y="-29" width="84" height="58" rx="8" />
+              <path d="M-22-7h44M-22 7h44" />
+              <circle cx="25" cy="18" r="3" />
+              <text x="0" y="52">DIST-SW1</text>
+            </g>
+            <g class="node" transform="translate(445 288)">
+              <rect x="-42" y="-29" width="84" height="58" rx="8" />
+              <path d="M-22-7h44M-22 7h44" />
+              <circle cx="25" cy="18" r="3" />
+              <text x="0" y="52">DIST-SW2</text>
+            </g>
+            <g class="node node-access" transform="translate(130 470)">
+              <rect x="-38" y="-25" width="76" height="50" rx="7" />
+              <path d="M-20-6h40M-20 6h40" />
+              <circle cx="22" cy="15" r="3" />
+              <text x="0" y="47">ACCESS-SW1</text>
+            </g>
+            <g class="node node-access" transform="translate(270 470)">
+              <rect x="-38" y="-25" width="76" height="50" rx="7" />
+              <path d="M-20-6h40M-20 6h40" />
+              <circle cx="22" cy="15" r="3" />
+              <text x="0" y="47">ACCESS-SW2</text>
+            </g>
+            <g class="node node-access" transform="translate(410 470)">
+              <rect x="-38" y="-25" width="76" height="50" rx="7" />
+              <path d="M-20-6h40M-20 6h40" />
+              <circle cx="22" cy="15" r="3" />
+              <text x="0" y="47">ACCESS-SW3</text>
+            </g>
+            <g class="node node-access" transform="translate(550 470)">
+              <rect x="-38" y="-25" width="76" height="50" rx="7" />
+              <path d="M-20-6h40M-20 6h40" />
+              <circle cx="22" cy="15" r="3" />
+              <text x="0" y="47">ACCESS-SW4</text>
+            </g>
+          </svg>
+          <div class="topology-status" aria-hidden="true">
+            <span>08 SWITCHES</span><span>14 LINKS</span><span class="status-ok">● ALL SYSTEMS NOMINAL</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Technologies covered">
+        <p>CURRICULUM ALIGNED TO</p>
+        <div><span>CISCO</span><span>CompTIA</span><span>Wireshark</span><span>Linux</span><span>Python</span></div>
+      </section>
+
+      <section class="section tracks-section" id="tracks" aria-labelledby="tracks-title">
+        <div class="section-head reveal">
+          <p class="section-number">01 / TRACKS</p>
+          <h2 id="tracks-title">A route from first packet<br />to production network.</h2>
+          <p>Focused paths. Measurable skills. No sprawling video library.</p>
+        </div>
+
+        <div class="tracks reveal">
+          <div class="track-tabs" role="tablist" aria-label="Certification tracks">
+            <button id="tab-ccna" type="button" role="tab" aria-selected="true" aria-controls="panel-ccna" tabindex="0" data-track="ccna">
+              <span class="track-index">01</span><span><strong>CCNA Launchpad</strong><small>Zero to network-ready</small></span><span class="tab-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button id="tab-netplus" type="button" role="tab" aria-selected="false" aria-controls="panel-netplus" tabindex="-1" data-track="netplus">
+              <span class="track-index">02</span><span><strong>Network+ Core</strong><small>Vendor-neutral foundations</small></span><span class="tab-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button id="tab-automation" type="button" role="tab" aria-selected="false" aria-controls="panel-automation" tabindex="-1" data-track="automation">
+              <span class="track-index">03</span><span><strong>Network Automation</strong><small>Python, APIs &amp; workflows</small></span><span class="tab-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+
+          <div class="track-panels" aria-live="polite">
+            <article id="panel-ccna" class="track-panel is-active" role="tabpanel" aria-labelledby="tab-ccna" tabindex="0">
+              <div class="panel-meta"><span>12 WEEKS</span><span>3 LABS / WEEK</span><span>BEGINNER</span></div>
+              <h3>Build the foundation.<br />Earn the credential.</h3>
+              <p>From subnetting and VLANs to OSPF, security and automation — mapped directly to the current CCNA blueprint.</p>
+              <ul>
+                <li><span>01</span> Network fundamentals &amp; IPv4/IPv6</li>
+                <li><span>02</span> Switching, routing &amp; wireless</li>
+                <li><span>03</span> Security, services &amp; automation</li>
+                <li><span>04</span> Two timed exam simulations</li>
+              </ul>
+              <a class="button button-light" href="#apply">View next cohort <span aria-hidden="true">↗</span></a>
+            </article>
+            <article id="panel-netplus" class="track-panel" role="tabpanel" aria-labelledby="tab-netplus" tabindex="0" hidden>
+              <div class="panel-meta"><span>8 WEEKS</span><span>2 LABS / WEEK</span><span>BEGINNER</span></div>
+              <h3>Understand every layer.<br />Speak every vendor.</h3>
+              <p>A rigorous, vendor-neutral introduction to infrastructure, operations and troubleshooting for early-career IT professionals.</p>
+              <ul>
+                <li><span>01</span> OSI, addressing &amp; protocols</li>
+                <li><span>02</span> Infrastructure &amp; cloud concepts</li>
+                <li><span>03</span> Monitoring &amp; troubleshooting</li>
+                <li><span>04</span> CompTIA-style practice exams</li>
+              </ul>
+              <a class="button button-light" href="#apply">Join the waitlist <span aria-hidden="true">↗</span></a>
+            </article>
+            <article id="panel-automation" class="track-panel" role="tabpanel" aria-labelledby="tab-automation" tabindex="0" hidden>
+              <div class="panel-meta"><span>6 WEEKS</span><span>PROJECT-BASED</span><span>INTERMEDIATE</span></div>
+              <h3>Stop repeating.<br />Start engineering.</h3>
+              <p>Turn networking knowledge into repeatable workflows using Python, REST APIs, Git and infrastructure-as-code principles.</p>
+              <ul>
+                <li><span>01</span> Python for network engineers</li>
+                <li><span>02</span> REST APIs, JSON &amp; NETCONF</li>
+                <li><span>03</span> Configuration validation</li>
+                <li><span>04</span> Portfolio-ready capstone</li>
+              </ul>
+              <a class="button button-light" href="#apply">Get course details <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section method-section" id="method" aria-labelledby="method-title">
+        <div class="section-head light reveal">
+          <p class="section-number">02 / METHOD</p>
+          <h2 id="method-title">Theory gets you started.<br />Practice gets you hired.</h2>
+        </div>
+        <div class="method-grid">
+          <article class="method-card reveal">
+            <span class="method-icon">01</span>
+            <div class="mini-terminal" aria-hidden="true">
+              <div><i></i><i></i><i></i></div>
+              <code><span>R1#</span> show ip route ospf<br />O 10.24.0.0/16 [110/20]<br /><b>via 10.0.12.2, 00:01:42</b></code>
+            </div>
+            <h3>See it</h3><p>Concise live instruction gives you the mental model before the commands.</p>
+          </article>
+          <article class="method-card reveal reveal-delay-1">
+            <span class="method-icon">02</span>
+            <div class="lab-stack" aria-hidden="true"><span>CORE-R1</span><span>DIST-SW2</span><span>CLIENT-04</span></div>
+            <h3>Build it</h3><p>Every concept becomes a guided lab in a real multi-device topology.</p>
+          </article>
+          <article class="method-card reveal reveal-delay-2">
+            <span class="method-icon">03</span>
+            <div class="fault-map" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><b></b>
+            </div>
+            <h3>Break it</h3><p>Injected faults train you to isolate the problem, not memorize the answer.</p>
+          </article>
+          <article class="method-card reveal reveal-delay-3">
+            <span class="method-icon">04</span>
+            <div class="review-meter" aria-hidden="true"><strong>92</strong><span>%</span><i></i></div>
+            <h3>Prove it</h3><p>Weekly skill checks and exam simulations make readiness visible.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section outcomes-section" id="results" aria-labelledby="results-title">
+        <div class="outcomes-copy reveal">
+          <p class="section-number">03 / OUTCOMES</p>
+          <h2 id="results-title">Leave with evidence,<br />not just a certificate.</h2>
+          <p>Hiring managers need to know what you can do. You will finish with documented labs, a troubleshooting journal and a network design you can defend.</p>
+          <a class="text-link dark-link" href="#apply">Talk to an advisor <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="outcome-list reveal reveal-delay-1">
+          <div><span>01</span><strong>Validated lab portfolio</strong><p>Clear diagrams, configs and verification outputs.</p></div>
+          <div><span>02</span><strong>Operational confidence</strong><p>A repeatable process for diagnosing unfamiliar faults.</p></div>
+          <div><span>03</span><strong>Exam readiness</strong><p>Blueprint coverage and timed practice under pressure.</p></div>
+        </div>
+      </section>
+
+      <section class="quote-band" aria-label="Example student reflection">
+        <blockquote class="reveal">
+          “I stopped guessing at commands and started understanding why the network behaved the way it did.”
+          <footer><span>STUDENT REFLECTION</span> From memorizing commands to reading the network</footer>
+        </blockquote>
+      </section>
+
+      <section class="apply-section" id="apply" aria-labelledby="apply-title">
+        <div class="apply-copy reveal">
+          <p class="section-number">ENROLLMENT / OPEN</p>
+          <h2 id="apply-title">Your first lab<br />starts here.</h2>
+          <p>No pressure, no hard sell. Tell us where you are now and we’ll recommend the right route.</p>
+        </div>
+        <form class="interest-form reveal reveal-delay-1" data-form novalidate>
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Alex Morgan" />
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="alex@example.com" />
+          </div>
+          <div class="field field-wide">
+            <label for="goal">Current goal</label>
+            <select id="goal" name="goal" required>
+              <option value="">Select a training track</option>
+              <option>Pass the CCNA</option>
+              <option>Build network fundamentals</option>
+              <option>Learn network automation</option>
+              <option>Choose the right path</option>
+            </select>
+          </div>
+          <button class="button button-primary form-submit field-wide" type="submit">Request course guide <span aria-hidden="true">↗</span></button>
+          <p class="form-note field-wide" data-form-status aria-live="polite">Portfolio demo — no request is transmitted.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#top">
+        <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><path d="M7 10.5 18 4l11 6.5v15L18 32 7 25.5v-15Z" /><circle cx="12" cy="13" r="2" /><circle cx="24" cy="13" r="2" /><circle cx="18" cy="23" r="2" /><path d="m13.7 14 3.1 7m5.5-7-3.1 7M14 13h8" /></svg>
+        <span>PACKETCRAFT<small>ACADEMY</small></span>
+      </a>
+      <p>Practical training for modern network engineers.</p>
+      <nav aria-label="Footer navigation"><a href="#tracks">Tracks</a><a href="#method">Method</a><a href="#apply">Contact</a></nav>
+      <p class="copyright">© <span data-year></span> Packetcraft Academy. Concept project — program figures are illustrative.</p>
+    </footer>
+  </body>
+</html>
