@@ -1,14 +1,20 @@
 const header = document.querySelector('[data-header]');
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.site-nav');
+const backToTop = document.querySelector('[data-back-to-top]');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 const setHeaderState = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 24);
+  backToTop.classList.toggle('is-visible', window.scrollY > Math.max(600, window.innerHeight * 0.75));
 };
 
 setHeaderState();
 window.addEventListener('scroll', setHeaderState, { passive: true });
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+});
 
 const closeNavigation = ({ restoreFocus = false } = {}) => {
   navToggle.setAttribute('aria-expanded', 'false');
@@ -53,6 +59,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 window.addEventListener('resize', () => {
+  setHeaderState();
   if (window.innerWidth > 760 && nav.classList.contains('is-open')) closeNavigation();
 });
 
