@@ -1,16 +1,27 @@
 const header = document.querySelector('[data-header]');
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.site-nav');
+const navScrim = document.querySelector('[data-nav-scrim]');
 const backToTop = document.querySelector('[data-back-to-top]');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 const setHeaderState = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 24);
-  backToTop.classList.toggle('is-visible', window.scrollY > Math.max(600, window.innerHeight * 0.75));
+  const showBackToTop = window.scrollY > Math.max(600, window.innerHeight * 0.75);
+  backToTop.classList.toggle('is-visible', showBackToTop);
+  backToTop.setAttribute('aria-hidden', String(!showBackToTop));
+  backToTop.tabIndex = showBackToTop ? 0 : -1;
 };
 
 setHeaderState();
-window.addEventListener('scroll', setHeaderState, { passive: true });
+let headerFrame = 0;
+window.addEventListener('scroll', () => {
+  if (headerFrame) return;
+  headerFrame = requestAnimationFrame(() => {
+    setHeaderState();
+    headerFrame = 0;
+  });
+}, { passive: true });
 
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
@@ -36,6 +47,7 @@ navToggle.addEventListener('click', () => {
 nav.addEventListener('click', (event) => {
   if (event.target.closest('a')) closeNavigation();
 });
+navScrim.addEventListener('click', () => closeNavigation({ restoreFocus: true }));
 
 document.addEventListener('keydown', (event) => {
   if (!nav.classList.contains('is-open')) return;

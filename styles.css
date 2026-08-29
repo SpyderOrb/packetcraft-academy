@@ -91,6 +91,7 @@ svg { display: block; }
 .nav-cta { padding: 12px 15px; color: var(--ink); background: var(--white); transition: color 180ms ease, background-color 180ms ease, transform 140ms var(--ease-out); }
 .is-scrolled .nav-cta { color: var(--ink); background: var(--blue); }
 .nav-toggle { display: none; }
+.nav-scrim { display: none; }
 
 .hero {
   position: relative;
@@ -318,6 +319,8 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: #c43838;
   .nav-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3px) rotate(-45deg); }
   .site-nav { position: fixed; z-index: 2; top: 0; right: 0; display: flex; flex-direction: column; align-items: stretch; width: min(86vw, 360px); height: 100dvh; padding: 106px 24px 30px; color: var(--ink); background: var(--white); box-shadow: -24px 0 80px rgb(4 16 35 / 22%); transform: translateX(105%); visibility: hidden; transition: transform 260ms var(--ease-out), visibility 0s linear 260ms; }
   .site-nav.is-open { transform: translateX(0); visibility: visible; transition: transform 260ms var(--ease-out), visibility 0s; }
+  .nav-scrim { position: fixed; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; padding: 0; background: rgb(4 16 35 / 58%); border: 0; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 220ms ease, visibility 0s linear 220ms; }
+  body.nav-open .nav-scrim { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 220ms ease, visibility 0s; }
   .site-nav a { padding: 15px 0; font-size: 16px; border-bottom: 1px solid var(--silver); }
   .site-nav .nav-cta { margin-top: auto; padding: 17px; color: var(--ink); background: var(--blue); border: 0; }
   body.nav-open { overflow: hidden; }
@@ -378,4 +381,5 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: #c43838;
 @media (max-width: 760px) and (prefers-reduced-motion: reduce) {
   .site-nav { transition: opacity 180ms ease, visibility 0s linear 180ms; transform: none; opacity: 0; }
   .site-nav.is-open { transition: opacity 180ms ease; opacity: 1; }
+  .nav-scrim, body.nav-open .nav-scrim { transition: opacity 180ms ease, visibility 0s; }
 }
