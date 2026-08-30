@@ -4,6 +4,9 @@ const nav = document.querySelector('.site-nav');
 const navScrim = document.querySelector('[data-nav-scrim]');
 const backToTop = document.querySelector('[data-back-to-top]');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const navigationSections = [...nav.querySelectorAll('a[href^="#"]')]
+  .map((link) => ({ link, section: document.querySelector(link.hash) }))
+  .filter(({ section }) => section);
 
 const setHeaderState = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 24);
@@ -13,12 +16,31 @@ const setHeaderState = () => {
   backToTop.tabIndex = showBackToTop ? 0 : -1;
 };
 
-setHeaderState();
+const setActiveNavigation = () => {
+  const activationLine = header.getBoundingClientRect().height + 48;
+  let activeLink = null;
+
+  navigationSections.forEach(({ link, section }) => {
+    if (section.getBoundingClientRect().top <= activationLine) activeLink = link;
+  });
+
+  navigationSections.forEach(({ link }) => {
+    if (link === activeLink) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+};
+
+const setPageState = () => {
+  setHeaderState();
+  setActiveNavigation();
+};
+
+setPageState();
 let headerFrame = 0;
 window.addEventListener('scroll', () => {
   if (headerFrame) return;
   headerFrame = requestAnimationFrame(() => {
-    setHeaderState();
+    setPageState();
     headerFrame = 0;
   });
 }, { passive: true });
@@ -71,7 +93,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 window.addEventListener('resize', () => {
-  setHeaderState();
+  setPageState();
   if (window.innerWidth > 760 && nav.classList.contains('is-open')) closeNavigation();
 });
 
