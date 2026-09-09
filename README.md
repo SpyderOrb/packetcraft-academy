@@ -23,6 +23,7 @@ You can also open `index.html` directly in a browser, although a local server is
 - Current-section navigation highlighting with accessible state
 - Accessible labels, focus states and semantic landmarks
 - Animated SVG lab topology and purposeful scroll reveals
+- Interactive IPv4 mini lab with five subnet exercises, answer explanations and address ranges
 - `prefers-reduced-motion` support
 - Client-side form validation and success feedback
 - No external runtime dependencies

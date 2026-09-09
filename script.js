@@ -133,6 +133,88 @@ tabs.forEach((tab, index) => {
   });
 });
 
+const subnetLab = document.querySelector('[data-subnet-lab]');
+const labForm = subnetLab.querySelector('[data-lab-form]');
+const labChoices = subnetLab.querySelector('[data-lab-choices]');
+const labFeedback = subnetLab.querySelector('[data-lab-feedback]');
+const labSolution = subnetLab.querySelector('[data-lab-solution]');
+const labNext = subnetLab.querySelector('[data-lab-next]');
+const labScenarios = [
+  { network: '10.24.8.0', prefix: 26 },
+  { network: '192.168.10.64', prefix: 27 },
+  { network: '172.16.4.128', prefix: 28 },
+  { network: '10.0.12.0', prefix: 24 },
+  { network: '192.168.50.200', prefix: 29 },
+];
+let labIndex = 0;
+
+function clearLabAnswer() {
+  labFeedback.textContent = '';
+  delete labFeedback.dataset.correct;
+  labSolution.hidden = true;
+}
+
+function renderLab({ focus = false } = {}) {
+  const { network, prefix } = labScenarios[labIndex];
+  const addressCount = 2 ** (32 - prefix);
+  subnetLab.querySelector('[data-lab-network]').textContent = `${network}/${prefix}`;
+  subnetLab.querySelector('[data-lab-progress]').textContent = `LAB ${labIndex + 1} / ${labScenarios.length}`;
+  labNext.replaceChildren(labIndex === labScenarios.length - 1 ? 'Start again ↻' : 'Next subnet →');
+  clearLabAnswer();
+  labChoices.replaceChildren();
+  const answers = [addressCount / 2 - 2, addressCount - 2, addressCount, addressCount * 2 - 2];
+  // Rotate the options so the correct answer does not stay in the same position.
+  const offset = labIndex % answers.length;
+  [...answers.slice(offset), ...answers.slice(0, offset)].forEach((answer) => {
+    const label = document.createElement('label');
+    label.className = 'subnet-lab__choice';
+    const radio = document.createElement('input');
+    radio.type = 'radio';
+    radio.name = 'hosts';
+    radio.value = String(answer);
+    const caption = document.createElement('span');
+    caption.textContent = String(answer);
+    label.append(radio, caption);
+    labChoices.append(label);
+  });
+  if (focus) labChoices.querySelector('input').focus({ preventScroll: true });
+}
+
+labForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const selected = labChoices.querySelector('input:checked');
+  if (!selected) {
+    labFeedback.textContent = 'Choose an answer before checking.';
+    labChoices.querySelector('input').focus({ preventScroll: true });
+    return;
+  }
+
+  const { network, prefix } = labScenarios[labIndex];
+  const hostBits = 32 - prefix;
+  const addressCount = 2 ** hostBits;
+  const usable = addressCount - 2;
+  const correct = Number(selected.value) === usable;
+  labFeedback.dataset.correct = String(correct);
+  labFeedback.textContent = `${correct ? 'Correct' : 'Not quite'} — ${usable} usable host addresses.`;
+  subnetLab.querySelector('[data-lab-explanation]').textContent =
+    `32 − ${prefix} = ${hostBits} host bits. 2^${hostBits} = ${addressCount} addresses. Reserve 2 for network and broadcast: ${usable} remain for hosts.`;
+  // These /24–/29 examples all fit inside one final octet.
+  const octets = network.split('.');
+  const start = Number(octets.pop());
+  const address = (offset) => `${octets.join('.')}.${start + offset}`;
+  subnetLab.querySelector('[data-lab-address="network"]').textContent = network;
+  subnetLab.querySelector('[data-lab-address="range"]').textContent = `${address(1)} – ${address(addressCount - 2)}`;
+  subnetLab.querySelector('[data-lab-address="broadcast"]').textContent = address(addressCount - 1);
+  labSolution.hidden = false;
+});
+labChoices.addEventListener('change', clearLabAnswer);
+labNext.addEventListener('click', () => {
+  labIndex = (labIndex + 1) % labScenarios.length;
+  renderLab({ focus: true });
+});
+renderLab();
+subnetLab.hidden = false;
+
 const revealItems = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(

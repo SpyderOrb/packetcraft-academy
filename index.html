@@ -252,6 +252,37 @@
             <h3>Prove it</h3><p>Weekly skill checks and exam simulations make readiness visible.</p>
           </article>
         </div>
+
+        <section class="subnet-lab" id="mini-lab" aria-labelledby="lab-title" data-subnet-lab hidden>
+          <div class="subnet-lab__intro">
+            <p class="section-number">TRY A MINI LAB</p>
+            <h3 id="lab-title">One subnet.<br />Make it count.</h3>
+            <p>Get a feel for the work. Count the usable IPv4 host addresses, then see how the numbers fit together.</p>
+            <span class="subnet-lab__tag">NO SIGN-UP · JUST PRACTICE</span>
+          </div>
+          <form class="subnet-lab__console" data-lab-form novalidate>
+            <div class="subnet-lab__meta"><span>ADDRESSING / IPv4</span><span data-lab-progress></span></div>
+            <p class="subnet-lab__network"><code id="lab-network" data-lab-network></code></p>
+            <fieldset class="subnet-lab__answers" aria-describedby="lab-network lab-network-note">
+              <legend>How many usable host addresses?</legend>
+              <div class="subnet-lab__choices" data-lab-choices></div>
+            </fieldset>
+            <p class="subnet-lab__note" id="lab-network-note">A standard subnet: reserve the network and broadcast addresses.</p>
+            <div class="subnet-lab__actions">
+              <button class="button button-primary" type="submit">Check answer <span aria-hidden="true">↗</span></button>
+              <button class="subnet-lab__next" type="button" data-lab-next>Next subnet <span aria-hidden="true">→</span></button>
+            </div>
+            <p class="subnet-lab__feedback" data-lab-feedback role="status" aria-atomic="true"></p>
+            <div class="subnet-lab__solution" data-lab-solution hidden>
+              <p data-lab-explanation></p>
+              <dl>
+                <div><dt>Network</dt><dd data-lab-address="network"></dd></div>
+                <div><dt>Usable range</dt><dd data-lab-address="range"></dd></div>
+                <div><dt>Broadcast</dt><dd data-lab-address="broadcast"></dd></div>
+              </dl>
+            </div>
+          </form>
+        </section>
       </section>
 
       <section class="section outcomes-section" id="results" aria-labelledby="results-title">
