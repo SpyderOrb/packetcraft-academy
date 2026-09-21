@@ -242,6 +242,18 @@ if ('IntersectionObserver' in window) {
 
 const form = document.querySelector('[data-form]');
 const formStatus = document.querySelector('[data-form-status]');
+const formNote = formStatus.textContent;
+form.addEventListener('input', (event) => {
+  const field = event.target;
+  if (!field.matches('[required]')) return;
+  if (field.hasAttribute('aria-invalid')) {
+    field.setAttribute('aria-invalid', String(!field.validity.valid));
+  }
+  if (!form.querySelector('[aria-invalid="true"]')) {
+    formStatus.textContent = formNote;
+    formStatus.classList.remove('is-success');
+  }
+});
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const fields = [...form.querySelectorAll('[required]')];
